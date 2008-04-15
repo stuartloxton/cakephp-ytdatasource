@@ -1,0 +1,5 @@
+h3. CakePHP YouTube Datasource
+
+This a CakePHP Datasource to access data from the Youtube API.
+
+h5. /// To be edited \\\ 
