@@ -13,7 +13,6 @@ class YtdatasourceController extends AppController {
 	function index()
 	{
 		$video = $this->Youtube->video('GIel7vbRkMQ');
-		
 		$this->set("video", $video);
 	}
 	

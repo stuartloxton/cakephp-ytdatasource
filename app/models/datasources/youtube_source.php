@@ -10,15 +10,9 @@ class YoutubeSource extends DataSource{
     	if($config != null) {
        		parent::__construct($config);
 		}
-		if(!class_exists('XMLNode')) {
-			require CORE_PATH . 'cake' . DS . 'libs' . DS . 'xml.php';
-		}
+		uses('xml');
         vendor('snoopy/snoopy');
         $this->Snoopy = new Snoopy();
-    }
-    
-    function YoutubeSource() {
-    	
     }
     
     function video($videoId) {
@@ -28,9 +22,9 @@ class YoutubeSource extends DataSource{
 
 class YoutubeVideo extends YoutubeSource {
 	
+	
 	var $id;
 	var $videoFeed;
-	
 	var $published;
 	var $updated;
 	var $title;
@@ -81,6 +75,12 @@ class YoutubeVideo extends YoutubeSource {
 					break;
 			}
 		}
+	}
+	function findRelated() {
+		$relatedFeed = 'http://gdata.youtube.com/feeds/api/videos/'.$this->id.'/related';
+		$feedresult = $this->Snoopy->fetch($relatedFeed);
+		
+		return $this->Snoopy->results;
 	}
 }
 ?> 
